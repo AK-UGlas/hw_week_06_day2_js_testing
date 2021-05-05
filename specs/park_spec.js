@@ -81,4 +81,13 @@ describe('Park', function() {
     assert.deepStrictEqual(actual, [trex])
   })
 
+  it('should be able to list number of dinosaurs by diet type', function() {
+    park.addDinosaur(allosaur);
+    park.addDinosaur(diplodocus);
+    const actual = park.diets
+    assert.deepStrictEqual(actual, {'carnivore': 2,
+                                    'herbivore': 2,
+                                    'omnivore': 0})
+  })
+
 });

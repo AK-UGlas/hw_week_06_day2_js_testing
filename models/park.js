@@ -2,10 +2,14 @@ const Park = function(name, ticketPrice) {
     this.name = name;
     this.ticketPrice = ticketPrice;
     this.dinosaurs = [];
+    this.diets = {'carnivore': 0,
+                  'herbivore': 0,
+                  'omnivore': 0}
 };
 
 Park.prototype.addDinosaur = function(dinosaur) {
     this.dinosaurs.push(dinosaur);
+    this.diets[dinosaur.diet] += 1;
 };
 
 Park.prototype.removeDinosaur = function(dinosaur) {
