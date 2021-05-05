@@ -3,15 +3,23 @@ const Park = require('../models/park.js');
 const Dinosaur = require('../models/dinosaur.js');
 
 let park;
+let trex;
+let diplodocus;
+let allosaur;
+let trike;
 
 describe('Park', function() {
 
   beforeEach(function() {
     park = new Park('Jurassic Park', 2000);
-    let trex = new Dinosaur('T-Rex','carnivore');
-    let diplodocus = new Dinosaur('Diplodocus', 'herbivore');
-    let allosaur = new Dinosaur('Allosaurus', 'carnivore');
-    let tri = new Dinosaur('Tricerotops', 'herbivore');
+    trex = new Dinosaur('T-Rex','carnivore', 200);
+    diplodocus = new Dinosaur('Diplodocus', 'herbivore', 250);
+    allosaur = new Dinosaur('Allosaurus', 'carnivore', 150);
+    trike = new Dinosaur('Tricerotops', 'herbivore', 100);
+
+    // add some dinosaurs to park collection
+    park.addDinosaur(trike);
+    park.addDinosaur(trex);
   })
 
   it('should have a name', function() {
@@ -26,18 +34,35 @@ describe('Park', function() {
 
   it('should have a collection of dinosaurs', function() {
     const actual = park.dinosaurs;
-    assert.deepStrictEqual(actual, []);
+    assert.deepStrictEqual(actual, [trike, trex]);
   });
 
-  it('should be able to add a dinosaur to its collection');
+  it('should be able to add a dinosaur to its collection', function() {
+    const actual = park.dinosaurs.length;
+    assert.strictEqual(actual, 2)
+  });
 
-  it('should be able to remove a dinosaur from its collection');
+  it('should be able to remove a dinosaur from its collection', function() {
+    let isRemoved = park.removeDinosaur(trex); 
+    const actual = park.dinosaurs.length;
+    assert.strictEqual(actual, 1)
+  });
 
-  it('should be able to find the dinosaur that attracts the most visitors');
+  it('should be able to find the dinosaur that attracts the most visitors', function() {
+    const actual = park.findMostLucrative();
+    assert.deepStrictEqual(actual, trex)
+  });
 
-  it('should be able to find all dinosaurs of a particular species');
+  it('should be able to find all dinosaurs of a particular species', function() {
+    park.addDinosaur(trex);
+    const actual = park.findSpecies('T-Rex');
+    assert.deepStrictEqual(actual, [trex, trex])
+  });
 
-  it('should be able to calculate the total number of visitors per day');
+  it('should be able to calculate the total number of visitors per day', function() {
+    const actual = park.dailyVisitors()
+    assert.strictEqual(actual, 300);
+  });
 
   it('should be able to calculate the total number of visitors per year');
 
