@@ -50,4 +50,9 @@ Park.prototype.dailyVisitors = function() {
     }
     return visitors;
 }
+
+Park.prototype.annualVisitors = function () {
+    return this.dailyVisitors() * 365;
+};
+
 module.exports = Park;
