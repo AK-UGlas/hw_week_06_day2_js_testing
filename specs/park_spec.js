@@ -71,7 +71,7 @@ describe('Park', function() {
 
 
   it('should be able to calculate total revenue for one year', function() {
-    const actual = annualNetIncome();
+    const actual = park.annualNetIncome();
     assert.strictEqual(actual, 300 * 365 * 2000)
   });
 

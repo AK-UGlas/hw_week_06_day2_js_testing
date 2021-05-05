@@ -55,4 +55,8 @@ Park.prototype.annualVisitors = function () {
     return this.dailyVisitors() * 365;
 };
 
+Park.prototype.annualNetIncome = function() {
+    return this.annualVisitors() * this.ticketPrice;
+}
+
 module.exports = Park;
