@@ -59,4 +59,14 @@ Park.prototype.annualNetIncome = function() {
     return this.annualVisitors() * this.ticketPrice;
 }
 
+Park.prototype.removeSpecies = function(species) {
+    let newDinos = [];
+    for (dino of this.dinosaurs) {
+        if (dino.species !== species) {
+            newDinos.push(dino);
+        };
+    };
+    this.dinosaurs = newDinos;
+}
+
 module.exports = Park;

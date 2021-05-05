@@ -75,4 +75,10 @@ describe('Park', function() {
     assert.strictEqual(actual, 300 * 365 * 2000)
   });
 
+  it('should be able to remove dinosaurs of certain species', function() {
+    park.removeSpecies('Tricerotops')
+    const actual = park.dinosaurs;
+    assert.deepStrictEqual(actual, [trex])
+  })
+
 });
